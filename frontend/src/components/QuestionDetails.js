@@ -127,14 +127,14 @@ const QuestionDetails = () => {
                 (
                     <Suspense fallback={<Spinner/>}>
                         <EditItem initialValue = {question.statement} rerender={()=>setEditQuestion(false)} 
-                        updateUrl={`http://localhost:4000/questions/statement/${question._id}`}/>
+                        updateUrl={`${backendUrl}/questions/statement/${question._id}`}/>
                     </Suspense>
                 )
             }
             {
                 (addAnswer===true) &&
                 <Suspense fallback={<Spinner/>}>
-                    <AddAnswerComment submitUrl={`http://localhost:4000/answers/${question._id}`}
+                    <AddAnswerComment submitUrl={`${backendUrl}/answers/${question._id}`}
                     hideForm={()=>setAddAnswer(false)} setShowPopup={() => setShowPopup(true)}/>
                 </Suspense>
             }
