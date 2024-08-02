@@ -18,6 +18,7 @@ const corsOptions ={
    credentials:true,       //access-control-allow-credentials:true
    origin: process.env.CLIENT_URL,
    methods: 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
+   allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept, Authorization',
    optionSuccessStatus:200
 }
 
