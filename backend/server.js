@@ -24,6 +24,7 @@ const corsOptions ={
 }
 
 app.use(cors(corsOptions))
+app.options('*', cors())
 
 mongoose.connect(MONGODB_URL)
 .then(() => {
