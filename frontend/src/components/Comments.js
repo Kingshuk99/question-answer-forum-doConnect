@@ -29,7 +29,7 @@ const Comments = ({answerId, rerender, questionStatus}) => {
     },[answerId, rerender, editComment])
 
     const deleteComment = async(commentId) => {
-        const response = await fetch(`http://localhost:4000/comments/${commentId}`,{
+        const response = await fetch(`${backendUrl}/comments/${commentId}`,{
             credentials: 'include',
             method: 'DELETE',
             headers: headers
@@ -42,7 +42,7 @@ const Comments = ({answerId, rerender, questionStatus}) => {
         }
     }
     const likeComment = async(id)=>{
-        const response = await fetch(`http://localhost:4000/comments/like/${id}`,{
+        const response = await fetch(`${backendUrl}/comments/like/${id}`,{
             credentials: 'include',
             method: 'PUT',
             headers: headers
@@ -61,7 +61,7 @@ const Comments = ({answerId, rerender, questionStatus}) => {
     }
 
     const dislikeComment = async(id)=>{
-        const response = await fetch(`http://localhost:4000/comments/dislike/${id}`,{
+        const response = await fetch(`${backendUrl}/comments/dislike/${id}`,{
             credentials: 'include',
             method: 'PUT',
             headers: headers
@@ -143,7 +143,7 @@ const Comments = ({answerId, rerender, questionStatus}) => {
                         (
                             <Suspense fallback={<Spinner/>}>
                                 <EditItem initialValue = {comment.statement} rerender={()=>setEditComment(null)} 
-                                updateUrl={`http://localhost:4000/comments/${comment._id}`}/>
+                                updateUrl={`${backendUrl}/comments/${comment._id}`}/>
                             </Suspense>
                         )
                     }
