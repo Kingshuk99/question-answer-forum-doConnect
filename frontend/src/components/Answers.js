@@ -32,7 +32,7 @@ const Answers = ({questionId, rerender}) => {
     },[questionId, rerender, editAnswer])
 
     const deleteAnswer = async(answerId) => {
-        const response = await fetch(`http://localhost:4000/answers/${answerId}`,{
+        const response = await fetch(`${backendUrl}/answers/${answerId}`,{
             credentials: 'include',
             method: 'DELETE',
             headers: headers
@@ -46,7 +46,7 @@ const Answers = ({questionId, rerender}) => {
     }
 
     const approveAnswer = async(answerId) => {
-        const response = await fetch(`http://localhost:4000/answers/approve/${answerId}`,{
+        const response = await fetch(`${backendUrl}/answers/approve/${answerId}`,{
             credentials: 'include',
             method: 'PUT',
             headers: headers,
@@ -61,7 +61,7 @@ const Answers = ({questionId, rerender}) => {
     }
 
     const likeAnswer = async(id)=>{
-        const response = await fetch(`http://localhost:4000/answers/like/${id}`,{
+        const response = await fetch(`${backendUrl}/answers/like/${id}`,{
             credentials: 'include',
             method: 'PUT',
             headers: headers
@@ -82,7 +82,7 @@ const Answers = ({questionId, rerender}) => {
 
     const dislikeAnswer = async(id)=>{
         console.log('here');
-        const response = await fetch(`http://localhost:4000/answers/dislike/${id}`,{
+        const response = await fetch(`${backendUrl}/answers/dislike/${id}`,{
             credentials: 'include',
             method: 'PUT',
             headers: headers
@@ -201,14 +201,14 @@ const Answers = ({questionId, rerender}) => {
                                 (
                                     <Suspense fallback={<Spinner/>}>
                                     <EditItem initialValue = {answer.statement} rerender={()=>setEditAnswer(null)} 
-                                    updateUrl={`http://localhost:4000/answers/${answer._id}`}/>
+                                    updateUrl={`${backendUrl}/answers/${answer._id}`}/>
                                     </Suspense>
                                 )
                             }
                             {
                                 (addComment===answer._id) &&
                                 <Suspense fallback={<Spinner/>}>
-                                <AddAnswerComment submitUrl={`http://localhost:4000/comments/${answer._id}`}
+                                <AddAnswerComment submitUrl={`${backendUrl}/comments/${answer._id}`}
                                 hideForm={()=>setAddComment(null)}/>
                                 </Suspense>
                             }
