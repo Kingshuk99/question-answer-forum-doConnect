@@ -16,6 +16,7 @@ const Login = ({socket}) => {
 
   const login = async(data) =>{
     const response = await fetch(`${backendUrl}/auth/login`, {
+      method: 'POST',
       mode: 'no-cors'
     });
     const result = await response.json();
@@ -25,6 +26,7 @@ const Login = ({socket}) => {
     }
     else {
       const userDataResponse = await fetch(`${backendUrl}/users/email/${data.email}`, {
+        method: 'GET',
         mode: 'no-cors'
       });
       const user = await userDataResponse.json();
