@@ -16,10 +16,7 @@ const Login = ({socket}) => {
 
   const login = async(data) =>{
     const response = await fetch(`${backendUrl}/auth/login`, {
-      credentials: 'include',
-      method: 'POST',
-      headers: headers,
-      body: JSON.stringify(data)
+      mode: 'no-cors'
     });
     const result = await response.json();
     const isStatusCorrect = response.ok;  //200-ok 
