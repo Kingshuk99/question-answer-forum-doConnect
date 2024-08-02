@@ -10,12 +10,11 @@ const app = express();
 const PORT = process.env.PORT;
 const MONGODB_URL=process.env.MONGODB_URL;
 const SESSION_SECRET=process.env.SESSION_SECRET;
-const CLIENT_URL=process.env.CLIENT_URL;
 app.use(bodyParser.json());
 
 const cors=require("cors");
 const corsOptions ={
-   origin:CLIENT_URL, 
+   origin:'*', 
    credentials:true,       //access-control-allow-credentials:true
    origin: process.env.CLIENT_URL,
    methods: 'GET, POST, PATCH, PUT, DELETE, OPTIONS',
