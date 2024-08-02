@@ -25,9 +25,7 @@ const Login = ({socket}) => {
     }
     else {
       const userDataResponse = await fetch(`${backendUrl}/users/email/${data.email}`, {
-        credentials: 'include',
-        method: 'GET',
-        headers: headers
+        mode: 'no-cors'
       });
       const user = await userDataResponse.json();
       var newSessionInfo = {
