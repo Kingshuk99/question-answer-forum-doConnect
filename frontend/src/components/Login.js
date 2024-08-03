@@ -40,6 +40,7 @@ const Login = ({socket}) => {
         }
       });
       const user = await userDataResponse.json();
+      console.log(user)
       var newSessionInfo = {
         role: role,
         id: user._id,
