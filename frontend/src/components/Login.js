@@ -17,7 +17,8 @@ const Login = ({socket}) => {
   const login = async(data) =>{
     const response = await fetch(`${backendUrl}/auth/login`, {
       method: 'POST',
-      mode: 'no-cors'
+      mode: 'no-cors',
+      body: JSON.stringify(data)
     });
     const result = await response.json();
     const isStatusCorrect = response.ok;  //200-ok 
@@ -27,8 +28,7 @@ const Login = ({socket}) => {
     else {
       const userDataResponse = await fetch(`${backendUrl}/users/email/${data.email}`, {
         method: 'GET',
-        mode: 'no-cors',
-        body: JSON.stringify(data)
+        mode: 'no-cors'
       });
       const user = await userDataResponse.json();
       var newSessionInfo = {
