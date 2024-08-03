@@ -13,6 +13,7 @@ exports.getAllUsers = async(req, res) => {  //we got all users data
 
 exports.getUserById = async(req, res) => {    //userid aftr authorization 
     try {
+        console.log(req);
         const id = req.params.id;
         const user = await userService.getUserById(id);
         if(!user) {
@@ -21,6 +22,7 @@ exports.getUserById = async(req, res) => {    //userid aftr authorization
         res.json(user);
     }
     catch(err) {
+        console.log(err);
         res.status(500).json({message:"Failed to fetch user",error:err.message});
     }
 }
