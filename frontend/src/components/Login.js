@@ -16,8 +16,9 @@ const Login = ({socket}) => {
 
   const login = async(data) =>{
     const response = await fetch(`${backendUrl}/auth/login`, {
+      credentials: 'include',
       method: 'POST',
-      mode: 'no-cors',
+      headers: headers,
       body: JSON.stringify(data)
     });
     const result = await response.json();
@@ -27,8 +28,9 @@ const Login = ({socket}) => {
     }
     else {
       const userDataResponse = await fetch(`${backendUrl}/users/email/${data.email}`, {
+        credentials: 'include',
         method: 'GET',
-        mode: 'no-cors'
+        headers: headers
       });
       const user = await userDataResponse.json();
       var newSessionInfo = {
