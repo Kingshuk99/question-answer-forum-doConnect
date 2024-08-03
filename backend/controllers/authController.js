@@ -21,6 +21,7 @@ exports.login = async(req,res)=>{
       email,
       role
     }
+    req.session.save();
     res.status(200).json({message:'User logged in Successfully'});
   }catch(error){
     res.status(500).json({message:error.message});
