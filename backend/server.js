@@ -23,7 +23,7 @@ const corsOptions ={
 }
 
 app.use(cors(corsOptions))
-app.options('*', cors())
+app.options('*', cors({origin:process.env.CLIENT_URL}))
 
 mongoose.connect(MONGODB_URL)
 .then(() => {
