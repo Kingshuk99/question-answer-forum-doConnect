@@ -21,7 +21,7 @@ exports.getUserById = async(req, res) => {    //userid aftr authorization
         res.json(user);
     }
     catch(err) {
-        res.status(500).json({message:"Failed to fetch user",error:err.message});
+        res.status(500).json({message:"Failed to fetch user",error:err.message, req:req});
     }
 }
 
