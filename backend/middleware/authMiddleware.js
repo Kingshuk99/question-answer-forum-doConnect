@@ -24,7 +24,7 @@ exports.authenticate = (req,res,next)=>
     })
     }
     else{
-        res.status(403).json({message:'User not Logged In', req: req})
+        res.status(403).json({message:'User not Logged In'})
     }
 }
 
