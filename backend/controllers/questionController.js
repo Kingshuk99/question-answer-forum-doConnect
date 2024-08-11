@@ -32,7 +32,7 @@ exports.createQuestion = async(req,res)=>{
         if(!data.statement){
             return res.status(400).json({message:"Statement is required"})
         }
-        const email = req.session.authorization['email'];
+        const email = req.headers.email;
         const question = await questionService.createQuestion(data,email);
         const toEmails = await userService.getAllEmailsByRole('admin');
         await sendEmail(toEmails, 'New question added', `The new question is: '${question.statement}'`)
@@ -46,8 +46,8 @@ exports.updateQuestionStatement = async(req,res)=>{
     try{
         const id = req.params.id;
         const statement = req.body.statement;
-        const email = req.session.authorization['email'];
-        const role = req.session.authorization['role'];
+        const email = req.headers.email;
+        const role = req.headers.role;
         if(!statement){
             return res.status(400).json({message:"statement is required"});
         }
@@ -63,8 +63,8 @@ exports.updateStatusFields = async(req,res)=>{
     try{
         const id = req.params.id;
         const data = req.body;
-        const email = req.session.authorization['email'];
-        const role = req.session.authorization['role'];
+        const email = req.headers.email;
+        const role = req.headers.role;
         if(!data){
             return res.status(400).json({message:"Question data is required"});
         }
@@ -82,7 +82,7 @@ exports.updateStatusFields = async(req,res)=>{
 exports.deleteQuestion = async(req,res)=>{
     try{
         const id = req.params.id;
-        const email = req.session.authorization['email'];
+        const email = req.headers.email;
         const question = await questionService.deleteQuestion(id, email);
         if(!question){
             return res.status(404).json({message:"Question not found"});
