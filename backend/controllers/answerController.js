@@ -29,7 +29,7 @@ exports.getAnswerById = async(req,res)=>{
 exports.createAnswer = async(req,res)=>{
     try{
         const questionId = req.params.questionId;
-        const email = req.session.authorization['email'];
+        const email = req.headers.email;
         const statement = req.body.statement;
         if(!statement){
             return res.status(400).json({message:"Statement is required"})
@@ -49,8 +49,8 @@ exports.updateAnswer = async(req,res)=>{
     try{
         const id = req.params.id;
         const statement = req.body.statement;
-        const email = req.session.authorization['email'];
-        const role = req.session.authorization['role'];
+        const email = req.headers.email;
+        const role = req.headers.role;
         if(!statement){
             return res.status(400).json({message:"statement is required"});
         }
@@ -87,8 +87,8 @@ exports.aproveAnswer = async(req,res)=>{
     try{
         const id = req.params.id;
         const data = req.body;
-        const email = req.session.authorization['email'];
-        const role = req.session.authorization['role'];
+        const email = req.headers.email;
+        const role = req.headers.role;
         if(!data){
             return res.status(400).json({message:"Answer data is required"});
         }
@@ -105,7 +105,7 @@ exports.aproveAnswer = async(req,res)=>{
 exports.deleteAnswer = async(req,res)=>{
     try{
         const id = req.params.id;
-        const email = req.session.authorization['email'];
+        const email = req.headers.email;
         const answer =await answerService.deleteAnswer(id, email);
         if(!answer){
             return res.status(404).json({message:"answer not found"});
