@@ -6,9 +6,9 @@ const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
 
 exports.authenticate = (req,res,next)=>
 {
-    if(req.session.authorization)
+    if(req.headers)
     {
-        const token = req.session.authorization['token'];
+        const token = req.headers.token;
         if(!token)
         {
             return res.status(401).json({message:"Unauthorized"})
@@ -18,7 +18,7 @@ exports.authenticate = (req,res,next)=>
         {
             return res.status(401).json({message:"Unauthorized"})
         }
-           req.user_email = req.session.authorization['email'];
+           req.user_email = req.headers.email;
         //    console.log(req.user_email);
            next();
     })
