@@ -30,7 +30,7 @@ const Login = ({socket}) => {
       const userDataResponse = await fetch(`${backendUrl}/users/email/${data.email}`, {
         credentials: 'include',
         method: 'GET',
-        headers: {...headers, token:result.token, email:data.email}
+        headers: {...headers, token:result.token, email:data.email, role:data.role}
       });
       const user = await userDataResponse.json();
       console.log(user)
@@ -38,6 +38,7 @@ const Login = ({socket}) => {
         role: role,
         id: user._id,
         userName: user.name
+        token:result.token
       };
       setSessionInfo(newSessionInfo);
       navigate(`/`);
