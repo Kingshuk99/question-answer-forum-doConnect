@@ -27,7 +27,7 @@ exports.getCommentById = async(req,res)=>{
 exports.createComment = async(req,res)=>{
     try{
         const answerId = req.params.answerId;
-        const email = req.session.authorization['email'];
+        const email = req.headers.email;
         const statement = req.body.statement;
         if(!statement){
             return res.status(400).json({message:"Statement is required"})
@@ -43,7 +43,7 @@ exports.updateComment = async(req,res)=>{
     try{
         const id = req.params.id;
         const statement = req.body.statement;
-        const email = req.session.authorization['email'];
+        const email = req.headers.email;
         if(!statement){
             return res.status(400).json({message:"statement is required"});
         }
@@ -79,7 +79,7 @@ exports.dislikeComment = async(req,res)=>{
 exports.deleteComment = async(req,res)=>{
     try{
         const id = req.params.id;
-        const email = req.session.authorization['email'];
+        const email = req.headers.email;
         const comment =await commentService.deleteComment(id, email);
         if(!comment){
             return res.status(404).json({message:"comment not found"});
