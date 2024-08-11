@@ -30,7 +30,7 @@ const Login = ({socket}) => {
       const userDataResponse = await fetch(`${backendUrl}/users/email/${data.email}`, {
         credentials: 'include',
         method: 'GET',
-        headers: {...headers, token:result.token}
+        headers: {...headers, token:result.token, email:data.email}
       });
       const user = await userDataResponse.json();
       console.log(user)
