@@ -56,8 +56,7 @@ const SeeUsers = () => {
         </thead>
         <tbody>
           {
-            users.map((user, index) => (
-              (user._id!==sessionInfo.id) &&
+            users.filter(user => user._id!==sessionInfo.id).map((user, index) => (
               <tr scope="row" key={index}>
                 <td>{index+1}</td>
                 <td>{user.name}</td>
