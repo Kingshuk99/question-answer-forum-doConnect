@@ -38,7 +38,8 @@ const Login = ({socket}) => {
         role: role,
         id: user._id,
         userName: user.name,
-        token:result.token
+        token:result.token,
+        email:data.email
       };
       setSessionInfo(newSessionInfo);
       navigate(`/`);
