@@ -14,7 +14,7 @@ const SeeUsers = () => {
       const response = await fetch(`${backendUrl}/users`,{
         credentials: 'include',
         method: 'GET',
-        headers: headers
+        headers: {...headers, token:sessionInfo.token, email:sessionInfo.email, role:sessionInfo.role}
       });
       const result = await response.json();
       const isStatusCorrect = response.ok;   ///status === 200 or 201
@@ -29,7 +29,7 @@ const SeeUsers = () => {
     const response = await fetch(`${backendUrl}/users/${userId}`,{
         credentials: 'include',
         method: 'PUT',
-        headers: headers,
+        headers: {...headers, token:sessionInfo.token, email:sessionInfo.email, role:sessionInfo.role},
         body : JSON.stringify({activated:status})
       });
       const result = await response.json();
