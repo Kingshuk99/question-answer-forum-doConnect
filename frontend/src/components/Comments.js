@@ -17,7 +17,7 @@ const Comments = ({answerId, rerender, questionStatus}) => {
             const response = await fetch(`${backendUrl}/comments/answer/${answerId}`,{
             credentials: 'include',
             method: 'GET',
-            headers: headers
+            headers: {...headers, token:sessionInfo.token, email:sessionInfo.email, role:sessionInfo.role}
             });
             const result = await response.json();
             const isStatusCorrect = response.ok;   ///status === 200 or 201
@@ -32,7 +32,7 @@ const Comments = ({answerId, rerender, questionStatus}) => {
         const response = await fetch(`${backendUrl}/comments/${commentId}`,{
             credentials: 'include',
             method: 'DELETE',
-            headers: headers
+            headers: {...headers, token:sessionInfo.token, email:sessionInfo.email, role:sessionInfo.role}
             });
         const result = await response.json();
         const isStatusCorrect = response.ok;   ///status === 200 or 201
@@ -45,7 +45,7 @@ const Comments = ({answerId, rerender, questionStatus}) => {
         const response = await fetch(`${backendUrl}/comments/like/${id}`,{
             credentials: 'include',
             method: 'PUT',
-            headers: headers
+            headers: {...headers, token:sessionInfo.token, email:sessionInfo.email, role:sessionInfo.role}
         });
         const result = await response.json();
         const isStatusCorrect = response.ok;   ///status === 200 or 201
@@ -64,7 +64,7 @@ const Comments = ({answerId, rerender, questionStatus}) => {
         const response = await fetch(`${backendUrl}/comments/dislike/${id}`,{
             credentials: 'include',
             method: 'PUT',
-            headers: headers
+            headers: {...headers, token:sessionInfo.token, email:sessionInfo.email, role:sessionInfo.role}
         });
         const result = await response.json();
         const isStatusCorrect = response.ok;   ///status === 200 or 201
