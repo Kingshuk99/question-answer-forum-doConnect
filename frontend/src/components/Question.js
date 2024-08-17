@@ -16,7 +16,7 @@ const Question = () => {
       const response = await fetch(`${backendUrl}/questions?statement=${statement}`,{
         credentials: 'include',
         method: 'GET',
-        headers: headers
+        headers: {...headers, token:sessionInfo.token, email:sessionInfo.email, role:sessionInfo.role}
       });
       const result = await response.json();
       const isStatusCorrect = response.ok;   ///status === 200 or 201
@@ -36,7 +36,7 @@ const Question = () => {
     const response = await fetch(`${backendUrl}/questions/status/${id}`,{
         credentials: 'include',
         method: 'PUT',
-        headers: headers,
+        headers: {...headers, token:sessionInfo.token, email:sessionInfo.email, role:sessionInfo.role},
         body : JSON.stringify({approved:true})
       });
       const result = await response.json();
@@ -50,7 +50,7 @@ const Question = () => {
     const response = await fetch(`${backendUrl}/questions/status/${id}`,{
         credentials: 'include',
         method: 'PUT',
-        headers: headers,
+        headers: {...headers, token:sessionInfo.token, email:sessionInfo.email, role:sessionInfo.role},
         body : JSON.stringify({isActive:false})
       });
       const result = await response.json();
