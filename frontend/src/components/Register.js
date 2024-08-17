@@ -1,4 +1,5 @@
-import React, {useState} from "react"
+import React, {useState, useContext} from "react"
+import { SessionInfoContext } from "../App";
 import { Formik , Form , Field , ErrorMessage} from 'formik'
 import * as Yup from 'yup'
 import headers from './headers.json'
@@ -9,12 +10,13 @@ const backendUrl = process.env.REACT_APP_BACKEND_URL;
 const Register = () => {
     const [role, setRole] = useState('user');
     const [registerError, setRegisterError] = useState(null);
+    const sessionInfo = useContext(SessionInfoContext).sessionInfo;
 
     const addAccount = async(accountData) => {
         const response = await fetch(`${backendUrl}/auth/register`, {
             credentials: 'include',
             method: 'POST',
-            headers: headers,
+            headers: {...headers, token:sessionInfo.token, email:sessionInfo.email, role:sessionInfo.role},
             body: JSON.stringify(accountData)
         });
         const result = await response.json();
