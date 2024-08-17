@@ -26,7 +26,7 @@ const QuestionDetails = () => {
             const response = await fetch(`${backendUrl}/questions/${id}`,{
             credentials: 'include',
             method: 'GET',
-            headers: headers
+            headers: {...headers, token:sessionInfo.token, email:sessionInfo.email, role:sessionInfo.role}
             });
             const result = await response.json();
             const isStatusCorrect = response.ok;   ///status === 200 or 201
@@ -41,7 +41,7 @@ const QuestionDetails = () => {
         const response = await fetch(`${backendUrl}/questions/${questionId}`,{
             credentials: 'include',
             method: 'DELETE',
-            headers: headers
+            headers: {...headers, token:sessionInfo.token, email:sessionInfo.email, role:sessionInfo.role}
             });
         const result = await response.json();
         const isStatusCorrect = response.ok;   ///status === 200 or 201
