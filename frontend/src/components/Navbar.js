@@ -42,7 +42,7 @@ const Navbar = () => {
     const response = await fetch(`${backendUrl}/auth/logout`, {
             credentials: 'include',
             method: 'POST',
-            headers: headers,
+            headers: {...headers, token:sessionInfo.token, email:sessionInfo.email, role:sessionInfo.role},
             body: JSON.stringify()
         });
         const result = await response.json();
