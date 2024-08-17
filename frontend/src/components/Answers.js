@@ -20,7 +20,7 @@ const Answers = ({questionId, rerender}) => {
             const response = await fetch(`${backendUrl}/answers/question/${questionId}`,{
             credentials: 'include',
             method: 'GET',
-            headers: headers
+            headers: {...headers, token:sessionInfo.token, email:sessionInfo.email, role:sessionInfo.role}
             });
             const result = await response.json();
             const isStatusCorrect = response.ok;   ///status === 200 or 201
@@ -35,7 +35,7 @@ const Answers = ({questionId, rerender}) => {
         const response = await fetch(`${backendUrl}/answers/${answerId}`,{
             credentials: 'include',
             method: 'DELETE',
-            headers: headers
+            headers: {...headers, token:sessionInfo.token, email:sessionInfo.email, role:sessionInfo.role}
             });
         const result = await response.json();
         const isStatusCorrect = response.ok;   ///status === 200 or 201
@@ -49,7 +49,7 @@ const Answers = ({questionId, rerender}) => {
         const response = await fetch(`${backendUrl}/answers/approve/${answerId}`,{
             credentials: 'include',
             method: 'PUT',
-            headers: headers,
+            headers: {...headers, token:sessionInfo.token, email:sessionInfo.email, role:sessionInfo.role},
             body: JSON.stringify({approved: true})
             });
         const result = await response.json();
@@ -64,7 +64,7 @@ const Answers = ({questionId, rerender}) => {
         const response = await fetch(`${backendUrl}/answers/like/${id}`,{
             credentials: 'include',
             method: 'PUT',
-            headers: headers
+            headers: {...headers, token:sessionInfo.token, email:sessionInfo.email, role:sessionInfo.role}
         });
         const result = await response.json();
         const isStatusCorrect = response.ok;   ///status === 200 or 201
@@ -85,7 +85,7 @@ const Answers = ({questionId, rerender}) => {
         const response = await fetch(`${backendUrl}/answers/dislike/${id}`,{
             credentials: 'include',
             method: 'PUT',
-            headers: headers
+            headers: {...headers, token:sessionInfo.token, email:sessionInfo.email, role:sessionInfo.role}
         });
         const result = await response.json();
         const isStatusCorrect = response.ok;   ///status === 200 or 201
