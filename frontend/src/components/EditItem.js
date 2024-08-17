@@ -1,15 +1,18 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
+import { SessionInfoContext } from "../App";
 import headers from './headers.json'
 
 const EditItem = ({initialValue, rerender, updateUrl}) => {
   const [button, setButton] = useState(null);
+  const sessionInfo = useContext(SessionInfoContext).sessionInfo;
+
 
   const onSubmit = async(data) => {
     if(button==='submit' && data && data.length>0) {
         const response = await fetch(updateUrl,{
             credentials: 'include',
             method: 'PUT',
-            headers: headers,
+            headers: {...headers, token:sessionInfo.token, email:sessionInfo.email, role:sessionInfo.role},
             body: JSON.stringify({statement: data})
         });
         const isStatusCorrect = response.ok;
