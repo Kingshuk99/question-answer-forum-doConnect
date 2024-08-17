@@ -33,11 +33,11 @@ const Login = ({socket}) => {
         headers: {...headers, token:result.token, email:data.email, role:data.role}
       });
       const user = await userDataResponse.json();
-      console.log(user)
+      //console.log(user)
       var newSessionInfo = {
         role: role,
         id: user._id,
-        userName: user.name
+        userName: user.name,
         token:result.token
       };
       setSessionInfo(newSessionInfo);
