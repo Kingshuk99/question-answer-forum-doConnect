@@ -1,6 +1,6 @@
 import React, {lazy, Suspense} from "react"
 import './addqsn.css';
-import  {useState} from "react"
+import  {useState, useContext} from "react"
 import { Formik , Form , Field, ErrorMessage} from 'formik';
 import * as Yup from 'yup'
 import { createPortal }  from 'react-dom';
@@ -8,18 +8,20 @@ import headers from './headers.json';
 import { useNavigate } from "react-router-dom"; 
 import Spinner from './Spinner';
 const Popup = lazy(() => import('./Popup'));
+import { SessionInfoContext } from "../App";
 
 const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
 const AddQuestion = () => {
   const [showPopup , setShowPopup] = useState(false);
   const navigate = useNavigate();
+  const sessionInfo = useContext(SessionInfoContext).sessionInfo;
   
   const addQuestion = async(data) => {
     const response = await fetch(`${backendUrl}/questions`, {
         credentials: 'include',
         method: 'POST',
-        headers: headers,
+        headers: {...headers, token:sessionInfo.token, email:sessionInfo.email, role:sessionInfo.role},
         body: JSON.stringify(data)
     });
     
