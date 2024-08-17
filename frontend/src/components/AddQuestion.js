@@ -7,8 +7,8 @@ import { createPortal }  from 'react-dom';
 import headers from './headers.json';
 import { useNavigate } from "react-router-dom"; 
 import Spinner from './Spinner';
-const Popup = lazy(() => import('./Popup'));
 import { SessionInfoContext } from "../App";
+const Popup = lazy(() => import('./Popup'));
 
 const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
